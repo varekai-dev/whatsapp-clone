@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react"
-import "./Chat.css"
-import { Avatar, IconButton } from "@material-ui/core"
-import AttachFile from "@material-ui/icons/AttachFile"
-import MoreVertIcon from "@material-ui/icons/MoreVert"
-import SearchOutlined from "@material-ui/icons/Search"
-import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon"
-import MicIcon from "@material-ui/icons/Mic"
+import React, { useEffect, useState } from 'react'
+import './Chat.css'
+import { Avatar, IconButton } from '@material-ui/core'
+import AttachFile from '@material-ui/icons/AttachFile'
+import MoreVertIcon from '@material-ui/icons/MoreVert'
+import SearchOutlined from '@material-ui/icons/Search'
+import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon'
+import MicIcon from '@material-ui/icons/Mic'
 function Chat() {
-  const [seed, setSeed] = useState("")
-  const sendMessage = (e) => {}
+  const [input, setInput] = useState('')
+  const [seed, setSeed] = useState('')
+  const sendMessage = (e) => {
+    e.preventDefault()
+    setInput('')
+  }
   const createChat = () => {
-    const roomName = prompt("Please enter name for chat")
+    const roomName = prompt('Please enter name for chat')
     if (roomName) {
     }
   }
@@ -38,7 +42,7 @@ function Chat() {
         </div>
       </div>
       <div className="chat__body">
-        <p className={`chat__message ${true && "chat__reciever"}`}>
+        <p className={`chat__message ${true && 'chat__reciever'}`}>
           <span className="chat__name">varekai</span>
           Hey guys
           <span className="chat__timestamp">3:52pm</span>
@@ -47,7 +51,7 @@ function Chat() {
       <div className="chat__footer">
         <InsertEmoticonIcon />
         <form>
-          <input type="text" placeholder="Type a message" />
+          <input value={input} onChange={(e) => setInput(e.target.value)} type="text" placeholder="Type a message" />
           <button onClick={sendMessage} type="Submit">
             Send a message
           </button>
