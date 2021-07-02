@@ -1,30 +1,30 @@
-import React, { useState, useEffect } from 'react'
-import './Sidebar.css'
-import { Avatar, IconButton } from '@material-ui/core'
-import DonutLargeIcon from '@material-ui/icons/DonutLarge'
-import ChatIcon from '@material-ui/icons/Chat'
-import MoreVertIcon from '@material-ui/icons/MoreVert'
-import SearchOutlined from '@material-ui/icons/Search'
-import SideBarChat from './SideBarChat'
-import db from './firebase'
-import { useStateValue } from './StateProvider'
+import React, { useState, useEffect } from "react";
+import "./Sidebar.css";
+import { Avatar, IconButton } from "@material-ui/core";
+import DonutLargeIcon from "@material-ui/icons/DonutLarge";
+import ChatIcon from "@material-ui/icons/Chat";
+import MoreVertIcon from "@material-ui/icons/MoreVert";
+import SearchOutlined from "@material-ui/icons/Search";
+import SideBarChat from "./SideBarChat";
+import db from "./firebase";
+import { useStateValue } from "./StateProvider";
 
 function Sidebar() {
-  const [rooms, setRooms] = useState([])
-  const [{ user }, dispatch] = useStateValue()
+  const [rooms, setRooms] = useState([]);
+  const [{ user }] = useStateValue();
   useEffect(() => {
-    const unsubscribe = db.collection('rooms').onSnapshot((snapshot) =>
+    const unsubscribe = db.collection("rooms").onSnapshot((snapshot) =>
       setRooms(
         snapshot.docs.map((doc) => ({
           id: doc.id,
-          data: doc.data()
+          data: doc.data(),
         }))
       )
-    )
+    );
     return () => {
-      unsubscribe()
-    }
-  }, [])
+      unsubscribe();
+    };
+  }, []);
   return (
     <div className="sidebar">
       <div className="sidebar__header">
@@ -54,7 +54,7 @@ function Sidebar() {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
-export default Sidebar
+export default Sidebar;
