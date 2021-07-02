@@ -1,14 +1,14 @@
-import React from 'react'
-import './App.css'
-import Sidebar from './Sidebar'
-import Chat from './Chat'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Login from './Login'
-import { useStateValue } from './StateProvider'
+import React from "react";
+import "./App.css";
+import Sidebar from "./Sidebar";
+import Chat from "./Chat";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Login from "./Login";
+import { useStateValue } from "./StateProvider";
 
 function App() {
-  const [{ user }, dispatch] = useStateValue()
-  console.log(user)
+  const [{ user }] = useStateValue();
+  console.log(user);
   return (
     <div className="app">
       {user ? (
@@ -29,7 +29,7 @@ function App() {
         <Login />
       )}
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
